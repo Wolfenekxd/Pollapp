@@ -5,7 +5,7 @@
 <h1 class="mb-5 text-center">{{ Election.Question }}</h1>
 
 <ul class="list-group mb-5">
-	{% for choice in question.choice_set.all %}
+	{% for answer in asnwers %}
 	<li class="list-group-item">
 		{{ Answers.Answer }}  <span class="badge badge-success float-right">{{ Answers.Result }} </span>
 	</li>

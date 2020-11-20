@@ -8,6 +8,7 @@ class Election(models.Model):
     Start_date = models.DateField()
     End_date = models.DateField()
     Owner_Id = models.ForeignKey(User, on_delete=models.CASCADE)
+    objects = models.Manager()
 
     def __str__(self):
         return self.Question
@@ -17,6 +18,7 @@ class Answers(models.Model):
     Answer = models.CharField(max_length=64)
     Result = models.IntegerField(default=0)
     Answer_date = models.DateField()
+    objects = models.Manager()
 
     def __str__(self):
         return self.Answer
