@@ -10,10 +10,11 @@ def avalaible(request):
     return render(request, 'polls/avalaible.html',context)
 
 
-class PollsListView(ListView):
+'''class PollsListView(ListView):
     queryset = Election.objects.all()
     context_object_name = 'Election'
     template_name = 'polls/avalaible.html'
+    '''
 
 def election_detail(request, election):
     election = get_object_or_404(election)
@@ -25,6 +26,3 @@ def results(request, election_id):
     return render(request,'polls/results.html', {'answers':answers,'election':election})
 
 
-'''def results(request, id):
-    context = election_data(id)
-    return render(request, 'polls/results.html', context)'''
