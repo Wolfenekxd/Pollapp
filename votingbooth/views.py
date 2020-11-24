@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from .models import Election,Answers
 from .db import election_data
 from django.views.generic import ListView , DetailView
+from .forms import ElectionForm
+from django.contrib.auth.models import User
 # Create your views here.
 
 def avalaible(request):
@@ -24,5 +26,17 @@ def results(request, election_id):
     answers = Answers.objects.all(election_id=election_id)
     election = Election.objects.all(id=election_id)
     return render(request,'polls/results.html', {'answers':answers,'election':election})
+
+
+def create_poll(request):
+    
+    if request.method == 'POST':
+        election_form = ElectionForm(data=request.POST)
+        if election_form.is_valid:
+            election_form.save()
+    else:
+        election_form = ElectionForm()
+
+    return render(request, 'polls/polls_form.html', {'election_form':election_form})    
 
 

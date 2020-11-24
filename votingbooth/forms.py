@@ -1,4 +1,5 @@
 from django import forms 
+from .models import Election
 
 class DateForm(forms.Form):
     date = forms.DateTimeField(
@@ -8,3 +9,8 @@ class DateForm(forms.Form):
             'data-target': '#datetimepicker1'
         })
     )
+
+class ElectionForm(forms.ModelForm):
+    class Meta:
+        model = Election
+        fields = ['Question', 'Start_date', 'End_date']

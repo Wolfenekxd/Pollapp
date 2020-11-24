@@ -18,7 +18,7 @@
 								<span class="input-group-text">Question<i class="fas fa-user"></i></span>
                             </div>
                             <div class="d-flex justify-content-center form_container" >
-                                {{form.Poll_question}}
+                                {{election_form.Poll_question}}
                             </div>
 						</div>
 						<div class="input-group mb-2">
@@ -26,7 +26,7 @@
 								<span class="input-group-text">Starting date<i class="fas fa-key"></i></span>
                             </div>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-								{{ form.Date_of_poll }}
+								{{ election_form.Date_of_poll }}
 								<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 								  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 								</div>
@@ -37,7 +37,7 @@
 								<span class="input-group-text">End date<i class="fas fa-key"></i></span>
                             </div>
                             <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-								{{ form.End_of_poll }}
+								{{ election_form.End_of_poll }}
 								<div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
 								  <div class="input-group-text"><i class="fa fa-calendar"></i></div>
 								</div>
