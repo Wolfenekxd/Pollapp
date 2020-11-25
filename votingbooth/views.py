@@ -19,19 +19,29 @@ class PollsListView(DetailView):
 
 def detail(request, pk):
     election = Election.objects.get(pk=pk)
-    data1 = election_list(pk)
-    data2 = answer_list(pk)
+    answers = Answers.objects.filter(Election_Id=pk)
     context = {
         'election':election,
-        'data1':data1,
-        'data2':data2
+        'answers':answers,     
     }
     return render(request, 'polls/detail.html', context)
 
-def results(request, election_id):
-    answers = Answers.objects.all(election_id=election_id)
-    election = Election.objects.all(id=election_id)
-    return render(request,'polls/results.html', {'answers':answers,'election':election})
+def results(request, pk):
+    answers = Answers.objects.filter(Election_Id=pk)
+    election = Election.objects.get(pk=pk)
+    labels = []
+    data = []
+    for answer in answers:
+        labels.append(answer.Answer)
+        data.append(answer.Result)
+
+    context = {
+        'answers':answers,
+        'election':election,
+        'labels':labels,
+        'data':data
+    }
+    return render(request,'polls/results.html',context)
 
 
 def create_poll(request):

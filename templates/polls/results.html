@@ -2,14 +2,69 @@
 
 {% block content %}
 
-<h1 class="mb-5 text-center">{{ Election.Question }}</h1>
+<h1 class="mb-5 text-center">{{ election.Question }}</h1>
 
-<ul class="list-group mb-5">
-	{% for answer in answers %}
-	<li class="list-group-item">
-		{{ answers.Answer }}  <span class="badge badge-success float-right">{{ answers.Result }} </span>
-	</li>
-	{% endfor %}
-</ul>
 
+<div id='chart_div' align='center' >
+	<div class="mb-4">
+    <canvas id="pie-chart" width="250" height="250">
+
+	</canvas>
+</div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+  <script>
+
+    var config = {
+      type: 'pie',
+      data: {
+        datasets: [{
+          data: {{ data|safe }},
+          backgroundColor: ['#696969', '#808080', '#A9A9A9', '#C0C0C0', '#D3D3D3'],
+          label: 'Population'
+        }],
+        labels: {{ labels|safe }}
+      },
+      options: {
+		responsive: true,
+		maintainAspectRatio: false,}
+	};
+
+    window.onload = function() {
+      var ctx = document.getElementById('pie-chart').getContext('2d');
+      window.myPie = new Chart(ctx, config);
+    };
+  </script>
+
+
+<div class="col-md-8 offset-md-4 mb-3">
+<div class="user_card" style="margin-left: 10%;">
+<table class="table">
+	<thead>
+	  <tr>
+		<th scope="col">#</th>
+		<th scope="col">Answer</th>
+		<th scope="col">Votes</th>
+	  </tr>
+	</thead>
+	<tbody>
+		{% for answer in answers %}
+		<tr>
+			<th scope="row">{{forloop.counter}}</th>
+      		<td>{{ answer.Answer }}</td>
+      		<td>{{ answer.Result }}</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>	
+</div>
+</div>
+
+<div class="col-md-8 offset-md-4">
+    <div class="user_card" style="margin-left: 10%;">
+		<a href="" class="btn btn-primary btn-sm mb-2">Vote Now</a>
+		<a href="/polls" class="btn btn-secondary btn-sm mb-2">Bakc to poll list</a>
+	</div>
+</div>		
 {% endblock %}
