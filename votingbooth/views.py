@@ -1,9 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404,redirect
 from .models import Election,Answers
 from .db import election_data, election_list,answer_list
 from django.views.generic import ListView , DetailView
 from .forms import ElectionForm
 from django.contrib.auth.models import User
+from django.http import Http404
 # Create your views here.
 
 def avalaible(request):
@@ -48,8 +49,12 @@ def create_poll(request):
     
     if request.method == 'POST':
         election_form = ElectionForm(data=request.POST)
-        if election_form.is_valid:
+        if election_form.is_valid():
+            print(election_form)
             election_form.save()
+            return redirect('answers_form.html')
+        else:
+            raise Http404    
     else:
         election_form = ElectionForm()
 

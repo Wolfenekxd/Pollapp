@@ -1,5 +1,7 @@
-from django import forms 
+from django import forms
+from django.forms import ModelForm
 from .models import Election
+from bootstrap_datepicker_plus import DatePickerInput
 
 class DateForm(forms.Form):
     date = forms.DateTimeField(
@@ -10,7 +12,11 @@ class DateForm(forms.Form):
         })
     )
 
-class ElectionForm(forms.ModelForm):
+class ElectionForm(ModelForm):
     class Meta:
         model = Election
         fields = ['Question', 'Start_date', 'End_date']
+        widgets = {
+            'Start_date':DatePickerInput(format='%d-%m-%y'),
+            'End_date':DatePickerInput(format='%d-%m-%y')
+        }
