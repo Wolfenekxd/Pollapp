@@ -8,7 +8,7 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
-@login_required(login_url = 'login')
+
 def index(request):
     return render(request, 'pages/index.html')
     

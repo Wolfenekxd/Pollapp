@@ -14,9 +14,7 @@ class ElectionForm(ModelForm):
 
             'Start_date': DateInput(attrs={'type': 'date'}),
             'End_date': DateInput(attrs={'type': 'date'}),
-        }
-
-
+        
             'Start_date':DatePickerInput(options={'format': 'YYYY-MM-DD', 'debug': True}),
             'End_date':DatePickerInput(options={'format': 'YYYY-MM-DD', 'debug': True})
         }
