@@ -1,15 +1,15 @@
 from django.shortcuts import render, get_object_or_404,redirect
 from .models import Election,Answers
-from .db import election_data, election_list,answer_list
 from django.views.generic import ListView , DetailView
-from .forms import ElectionForm
+from .forms import ElectionForm, AnswerForm
 from django.contrib.auth.models import User
 from django.http import Http404
+from django.contrib import messages 
 # Create your views here.
 
 def avalaible(request):
     question_list = Election.objects.all()
-    context = {'question_list': question_list, }
+    context = {'question_list': question_list}
     return render(request, 'polls/avalaible.html',context)
 
 
@@ -50,14 +50,32 @@ def create_poll(request):
     if request.method == 'POST':
         election_form = ElectionForm(data=request.POST)
         if election_form.is_valid():
-            print(election_form)
-            election_form.save()
-            return redirect('answers_form.html')
+            election = election_form.save(commit=False)
+            election.Owner_Id_id = request.user.id
+            election.save()
         else:
-            raise Http404    
+            print(election_form)
     else:
         election_form = ElectionForm()
 
     return render(request, 'polls/polls_form.html', {'election_form':election_form})    
 
+def create_answers(request):
+    
+    if request.method == 'POST':
+        answer_form = AnswerForm(data=request.POST)
+        if answer_form.is_valid():
+            answer = answer_form.save(commit=False)
+            answer.Election_Id_id = 1
+            answer.save()
+            messages.info(request, 'Answer ' + str(answer) + ' added')
+        else:    
+            print(answer_form)
+    else:
+        answer_form = AnswerForm()
 
+    return render(request, 'polls/answers_form.html', {'answer_form':answer_form})    
+
+
+def success(request):
+    return render(request, 'polls/success.html')    

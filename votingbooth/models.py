@@ -12,9 +12,7 @@ class Election(models.Model):
 
     def __str__(self):
         return self.Question
-
-    def election_details(self):
-        return self.Start_date,self.End_date,self.Owner_Id    
+  
 
 class Answers(models.Model):
     Election_Id = models.ForeignKey(Election, on_delete=models.CASCADE)
