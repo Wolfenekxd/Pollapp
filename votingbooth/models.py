@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 # Create your models here.
 
@@ -15,6 +16,9 @@ class Election(models.Model):
 
     def election_details(self):
         return self.Start_date,self.End_date,self.Owner_Id    
+
+    def get_absolute_url(self): # new
+        return reverse('votingbooth:polls/detail', args=[self.id])
 
 class Answers(models.Model):
     Election_Id = models.ForeignKey(Election, on_delete=models.CASCADE)
