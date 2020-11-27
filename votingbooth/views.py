@@ -4,7 +4,9 @@ from django.views.generic import ListView , DetailView
 from .forms import ElectionForm, AnswerForm
 from django.contrib.auth.models import User
 from django.http import Http404
+from django.views.generic import CreateView
 from django.contrib import messages 
+
 # Create your views here.
 
 def avalaible(request):
@@ -43,6 +45,16 @@ def results(request, pk):
         'data':data
     }
     return render(request,'polls/results.html',context)
+
+
+class PollCreateView(CreateView):
+    model = Election
+    form_class = ElectionForm
+    template_name = 'polls/polls_form_datepicker.html'
+
+    def form_valid(self, form):
+        form.instance.Owner_Id = self.request.user
+        return super().form_valid(form)
 
 
 def create_poll(request):
