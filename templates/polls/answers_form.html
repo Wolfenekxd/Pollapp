@@ -2,6 +2,42 @@
 {% load static %}
 {% block content %}
 
-<h1>SUCCESS</h1>
+<hr>
+	<div class="container h-75">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<h1>{{ election }}</h1>
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">Add Answers</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form method="POST" action="">
+						{% csrf_token %}
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text">Answer</span>
+								{{answer_form.Answer}}
+                            </div>
+                            <div class="d-flex justify-content-center form_container" >
+                                <!--{{election_form.Question}}-->
+                            </div>
+						</div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 				<input class="btn login_btn" type="submit" value="Add another answer">
+							   </div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+								<a href="{% url 'votingbooth:polls/avalaible' %}" class="btn btn-secondary btn-large">List of polls</a>
+							</div>
+					</form>
+
+				</div>
+				
+				{% for message in messages %}
+          			<p id='messages'>{{message}}</p>
+				{% endfor %}	
+			</div>
+		</div>
+	</div>
+
 
 {% endblock %}

@@ -13,9 +13,7 @@ class Election(models.Model):
 
     def __str__(self):
         return self.Question
-
-    def election_details(self):
-        return self.Start_date,self.End_date,self.Owner_Id    
+  
 
     def get_absolute_url(self): # new
         return reverse('votingbooth:polls/detail', args=[self.id])

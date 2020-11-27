@@ -8,9 +8,11 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 # Create your views here.
 
+@login_required(login_url = 'login')
 def index(request):
     return render(request, 'pages/index.html')
-
+    
+@login_required(login_url = 'login')
 def about(request):
     return render(request, 'pages/about.html')
 
@@ -51,7 +53,7 @@ def loginPage(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('pages/login')
+    return redirect('pages/index')
 
 
 @login_required(login_url = 'login')

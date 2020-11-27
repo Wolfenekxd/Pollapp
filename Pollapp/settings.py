@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.postgres',
     'accounts',
     'votingbooth',
+    'votingstage',
     'crispy_forms',
     'rest_framework',
     'bootstrap_datepicker_plus'
