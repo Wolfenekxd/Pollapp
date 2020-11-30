@@ -14,7 +14,6 @@ class Election(models.Model):
     def __str__(self):
         return self.Question
   
-
     def get_absolute_url(self): # new
         return reverse('votingbooth:polls/detail', args=[self.id])
 

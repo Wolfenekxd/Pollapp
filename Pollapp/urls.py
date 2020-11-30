@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('accounts.urls')),
     path('admin/', admin.site.urls),
     path('accounts/',include('django.contrib.auth.urls')),
-    path('polls/', include('votingbooth.urls', namespace="votingbooth"))
+    path('polls/', include('votingbooth.urls', namespace="votingbooth")),
+    path('vote/', include('votingstage.urls', namespace="votingstage"))
 ]
