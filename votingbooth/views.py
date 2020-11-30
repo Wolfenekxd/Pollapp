@@ -5,7 +5,8 @@ from .forms import ElectionForm, AnswerForm
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.views.generic import CreateView
-from django.contrib import messages 
+from django.contrib import messages
+import datetime
 
 # Create your views here.
 
@@ -14,6 +15,14 @@ def avalaible(request):
     context = {'question_list': question_list}
     return render(request, 'polls/avalaible.html',context)
 
+def user_polls(request):
+    question_list = Election.objects.filter(Owner_Id=request.user.id).exclude(End_date__range=["2020-09-09", datetime.date.today()])
+    question_list_2 = Election.objects.filter(Owner_Id=request.user.id).filter(End_date__range=["2020-09-09", datetime.date.today()])
+    context = {
+        'question_list':question_list,
+        'question_list_2':question_list_2
+    }
+    return render(request, 'polls/user_polls.html',context)
 
 class PollsListView(DetailView):
     model = Election
