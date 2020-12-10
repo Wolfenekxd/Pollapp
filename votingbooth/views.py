@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404,redirect
+from django.shortcuts import render, get_object_or_404,redirect, HttpResponseRedirect,reverse
 from .models import Election,Answers
 from django.views.generic import ListView , DetailView
 from .forms import ElectionForm, AnswerForm
@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.http import Http404
 from django.views.generic import CreateView
 from django.contrib import messages
+
 import datetime
 
 # Create your views here.
@@ -74,6 +75,7 @@ def create_poll(request):
             election = election_form.save(commit=False)
             election.Owner_Id_id = request.user.id
             election.save()
+            return HttpResponseRedirect(reverse('votingbooth:answers', args=(election.id,)))
         else:
             print(election_form)
     else:
@@ -81,13 +83,13 @@ def create_poll(request):
 
     return render(request, 'polls/polls_form.html', {'election_form':election_form})    
 
-def create_answers(request):
+def create_answers(request,pk):
     
     if request.method == 'POST':
         answer_form = AnswerForm(data=request.POST)
         if answer_form.is_valid():
             answer = answer_form.save(commit=False)
-            answer.Election_Id_id = 1
+            answer.Election_Id_id = pk
             answer.save()
             messages.info(request, 'Answer ' + str(answer) + ' added')
         else:    
