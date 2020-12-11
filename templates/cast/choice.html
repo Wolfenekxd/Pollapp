@@ -1,17 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="text-center mb-3">{{ question }}</h1>
+<h1 class="text-center mb-3">{{ Question }}</h1>
 
-{% if error_message %}
-<p class="alert alert-danger">
-	<strong>{{ error_message }}</strong>
-</p>
-{% endif %}
-
-<form action="{% url 'votingstage:vote' question.id %}" method="post">
+<div class="col-md-8 offset-md-4">
+    <div class="user_card" style="margin-left: 10%;">
+    <form action="" method="post">
 	{% csrf_token %} 
-	{% for answer in answers %}
+	{% for answer in Answers %}
 		<div class="form-check">
 			<input
 				type="radio"
@@ -20,11 +16,20 @@
 				id="answer{{ forloop.counter }}"
 				value="{{ answer.id }}"
 			/>
-			<label for="answer{{ forloop.counter }}">{{ answer.answer }}</label
+			<label for="answer{{ forloop.counter }}">{{ answer }}</label
 			>
 		</div>
-	{% endfor %}
-    <input type="submit" value="vote" class="btn btn-success btn-lg btn-block mt-4" />
-    <a class="btn btn-secondary btn-sm mb-3" href="{% url 'polls/avalaible.html' %}">Back To Polls</a>
-</form>
+    {% endfor %}
+    </form>
+    <a href="" class="btn btn-primary btn-sm mb-2">Vote </a>
+	<a class="btn btn-secondary btn-sm mb-3" href="{% url 'votingbooth:polls/avalaible' %}">Back To Polls</a>
+	</div>
+</div>	
+
+{% if error_message %}
+<p class="alert alert-danger">
+	<strong>{{ error_message }}</strong>
+</p>
+{% endif %}
+
 {% endblock %}

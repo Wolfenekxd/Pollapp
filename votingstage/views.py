@@ -16,7 +16,7 @@ def choice(request, pk):
     return render(request, 'cast/choice.html', context)   
 
 
-def vote(request, pk):
+'''def vote(request, pk):
     question = get_object_or_404(Election, pk=pk)
     try:
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
@@ -28,7 +28,7 @@ def vote(request, pk):
     else:
         selected_choice.Result += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:polls/results', args=(question.id,)))
+        return HttpResponseRedirect(reverse('polls:polls/results', args=(question.id,)))'''
 
 def sample_vote(request):
     answers = Answers.objects.filter(Election_Id=1)

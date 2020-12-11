@@ -84,7 +84,7 @@ def create_poll(request):
     return render(request, 'polls/polls_form.html', {'election_form':election_form})    
 
 def create_answers(request,pk):
-    
+    election = Election.objects.get(pk=pk)
     if request.method == 'POST':
         answer_form = AnswerForm(data=request.POST)
         if answer_form.is_valid():
@@ -97,7 +97,13 @@ def create_answers(request,pk):
     else:
         answer_form = AnswerForm()
 
-    return render(request, 'polls/answers_form.html', {'answer_form':answer_form})    
+    answer_list = Answers.objects.filter(Election_Id=pk)
+    context = {
+        'answer_form':answer_form,
+        'election':election,
+        'answer_list':answer_list
+        }   
+    return render(request, 'polls/answers_form.html',context )    
 
 
 def success(request):

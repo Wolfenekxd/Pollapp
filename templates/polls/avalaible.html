@@ -9,7 +9,7 @@
     <div class="user_card mb-4" style="margin-left: 10%;">
         <p class="lead">{{ question }}</p>
         <a href="{% url 'votingbooth:polls/detail' question.pk %}" class="btn btn-primary btn-sm mb-2">Details</a>
-        <a href="{% url 'votingstage:sample' %}" class="btn btn-primary btn-sm mb-2">Vote Now</a>
+        <a href="{% url 'votingstage:cast/choice' question.pk %}" class="btn btn-primary btn-sm mb-2">Vote Now</a>
         <a href="{% url 'votingbooth:polls/results' question.pk %}" class="btn btn-secondary btn-sm mb-2">Results</a>
     </div>
 </div>

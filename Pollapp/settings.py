@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'votingstage',
     'crispy_forms',
     'rest_framework',
-    'bootstrap_datepicker_plus'
+    'bootstrap_datepicker_plus',
 ]
 
 MIDDLEWARE = [
