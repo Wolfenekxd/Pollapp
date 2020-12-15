@@ -30,6 +30,3 @@ def choice(request, pk):
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:polls/results', args=(question.id,)))'''
 
-def sample_vote(request):
-    answers = Answers.objects.filter(Election_Id=1)
-    return render(request, 'cast/samplevote.html', {'answers':answers})
