@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1 class="text-center mb-3">Success!</h1>
+
+<div class="col-md-8 offset-md-4">
+    <div class="user_card" style="margin-left: 10%;">
+        <p class="card-text">You successfully answered {{answer}} on election {{election}} </p>
+	    <a class="btn btn-primary btn-sm mb-3" href="{% url 'votingbooth:polls/avalaible' %}">Back To Polls</a>
+	</div>
+</div>	
+
+{% if error_message %}
+<p class="alert alert-danger">
+	<strong>{{ error_message }}</strong>
+</p>
+{% endif %}
+
+{% endblock %}

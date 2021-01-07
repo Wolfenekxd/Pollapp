@@ -30,3 +30,12 @@ def choice(request, pk):
         selected_choice.save()
         return HttpResponseRedirect(reverse('polls:polls/results', args=(question.id,)))'''
 
+
+def succes(request, pk):
+    election = Election.objects.get(pk=pk)
+    answer = Answers.objects.get(pk=6)
+    context = {
+        'election':election,
+        'answer':answer
+    }
+    return render(request, 'cast/success.html',context)
