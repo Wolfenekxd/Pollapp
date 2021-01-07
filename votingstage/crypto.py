@@ -30,7 +30,8 @@ class AESCipher:
 
 key = "dsfkfasjkdbadwww"
 aes = AESCipher( key, 32)
-encryp_msg = aes.encrypt( 'test' )
+msg = 'xd'
+encryp_msg = aes.encrypt( msg )
 print(encryp_msg)
 msg = aes.decrypt( encryp_msg )
 print("'{}'".format(msg))
