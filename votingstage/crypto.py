@@ -34,5 +34,5 @@ msg = 'xd'
 encryp_msg = aes.encrypt( msg )
 print(encryp_msg)
 msg = aes.decrypt( encryp_msg )
-print("'{}'".format(msg))
+print(msg)
     
