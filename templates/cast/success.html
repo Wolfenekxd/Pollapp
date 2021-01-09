@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 class="text-center mb-3">Success!</h1>
+<h1 class="text-center mb-3">Sukces!</h1>
 
 <div class="col-md-8 offset-md-4">
     <div class="user_card" style="margin-left: 10%;">
-        <p class="card-text">You successfully answered {{answer}} on election {{election}} </p>
-	    <a class="btn btn-primary btn-sm mb-3" href="{% url 'votingbooth:polls/avalaible' %}">Back To Polls</a>
+        <p class="card-text">Udało ci się pomyślnie przesłać następującą odpowiedź {{answer}} w ankiecie {{election}} </p>
+	    <a class="btn btn-primary btn-sm mb-3" href="{% url 'votingbooth:polls/avalaible' %}">Powrót do głosowań</a>
 	</div>
 </div>	
 

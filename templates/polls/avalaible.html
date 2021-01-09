@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h1 class="text-center mb-3">Poll Questions</h1>
+<h1 class="text-center mb-3">Dostępne ankiety</h1>
 {% if question_list %}
 {% for question in question_list %}
 <div class="col-md-8 offset-md-4">
     <div class="user_card mb-4" style="margin-left: 10%;">
         <p class="lead">{{ question }}</p>
-        <a href="{% url 'votingbooth:polls/detail' question.pk %}" class="btn btn-primary btn-sm mb-2">Details</a>
-        <a href="{% url 'votingstage:cast/choice' question.pk %}" class="btn btn-primary btn-sm mb-2">Vote Now</a>
-        <a href="{% url 'votingbooth:polls/results' question.pk %}" class="btn btn-secondary btn-sm mb-2">Results</a>
+        <a href="{% url 'votingbooth:polls/detail' question.pk %}" class="btn btn-primary btn-sm mb-2">Szczegóły</a>
+        <a href="{% url 'votingstage:cast/choice' question.pk %}" class="btn btn-primary btn-sm mb-2">Zagłosuj</a>
+        <a href="{% url 'votingbooth:polls/results' question.pk %}" class="btn btn-secondary btn-sm mb-2">Wyniki</a>
     </div>
 </div>
 {% endfor %}
@@ -18,7 +18,7 @@
 <div class="container h-30">
     <div class="d-flex justify-content-center h-30">
         <div class="user_card">
-    <h3>No polls available</h3>
+    <h3>Brak dostępnych głosowań</h3>
 </div>
 </div>
 </div>
