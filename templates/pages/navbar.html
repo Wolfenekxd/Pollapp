@@ -40,8 +40,8 @@
 
   
     <div class="text-right">
-      <span class="hello-msg">Hello, {{request.user}}</span>
-      <a class="hello-msg" href = "{% url 'logout' %}"> Logout</a>
+      <span class="hello-msg">Witaj, {{request.user}}</span>
+      <a class="hello-msg" href = "{% url 'logout' %}"> Wyloguj</a>
     </div>
   {% endif %}
 </nav>

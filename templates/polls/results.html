@@ -63,7 +63,7 @@
 
 <div class="col-md-8 offset-md-4">
     <div class="user_card" style="margin-left: 10%;">
-		<a href="" class="btn btn-primary btn-sm mb-2">Zagłosuj</a>
+		<a href={% url 'votingstage:cast/choice' election.pk %} class="btn btn-primary btn-sm mb-2">Zagłosuj</a>
 		<a href="/polls" class="btn btn-secondary btn-sm mb-2">Powrót do listy głosowań</a>
 	</div>
 </div>		
