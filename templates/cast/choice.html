@@ -5,7 +5,7 @@
 
 <div class="col-md-8 offset-md-4">
     <div class="user_card" style="margin-left: 10%;">
-    <form action="{% url 'votingstage:vote' election.pk %}" method="POST">
+    <form action="{% url 'votingstage:vote' Question.pk %}" method="POST">
 	{% csrf_token %} 
 	{% for answer in Answers %}
 		<div class="form-check">

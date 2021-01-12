@@ -1,6 +1,7 @@
 from Crypto.PublicKey import RSA
 from Crypto.Random import get_random_bytes
 from Crypto.Cipher import AES, PKCS1_OAEP
+from decryption import decryption
 
 def encryption(answer):
     data = answer.encode("utf-8")
@@ -19,5 +20,9 @@ def encryption(answer):
     [ file_out.write(x) for x in (enc_session_key, cipher_aes.nonce, tag, ciphertext) ]
     file_out.close()
 
-    return ciphertext, tag
+    return ciphertext
     
+answer = "Jan Nowak"    
+print(answer)
+print(encryption(answer))
+print(decryption())

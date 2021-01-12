@@ -4,9 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.urls import reverse
-from rsa_generate import generate_public_key, generate_private_key
-from encryption import encryption
-from decryption import decryption
+from .rsa_generate import generate_public_key, generate_private_key
+from .encryption import encryption
+from .decryption import decryption
 # Create your views here.
 
 def choice(request, pk):
@@ -21,10 +21,10 @@ def choice(request, pk):
 
 def vote(request, pk):
     question = get_object_or_404(Election, pk=pk)
-    answer = str(question.answers_set.get(pk=request.POST['answer']))
+    data = str(question.answers_set.get(pk=request.POST['answer']))
     generate_private_key()
     generate_public_key()
-    encryption(answer)
+    encryption(data)
     decrypted_answer = decryption()
     answers_query = Answers.objects.filter(Election_Id=pk)
     for dbanswer in answers_query:
