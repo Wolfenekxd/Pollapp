@@ -6,6 +6,6 @@ app_name = 'votingstage'
 
 urlpatterns = [
     path('<int:pk>/', views.choice, name='cast/choice'),
-    #path('<int:pk>/cast', views.vote, name='vote'),
+    path('<int:pk>/cast', views.vote, name='vote'),
     path('<int:pk>/success', views.succes, name='cast/success')
 ]

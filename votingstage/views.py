@@ -4,6 +4,9 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.template import loader
 from django.urls import reverse
+from rsa_generate import generate_public_key, generate_private_key
+from encryption import encryption
+from decryption import decryption
 # Create your views here.
 
 def choice(request, pk):
@@ -16,19 +19,21 @@ def choice(request, pk):
     return render(request, 'cast/choice.html', context)   
 
 
-'''def vote(request, pk):
+def vote(request, pk):
     question = get_object_or_404(Election, pk=pk)
-    try:
-        selected_choice = question.choice_set.get(pk=request.POST['choice'])
-    except (KeyError, ObjectDoesNotExist):
-        return render(request, 'cast/choice.html', {
-            'question': question,
-            'error_message': "You didn't select a choice.",
-        })
-    else:
-        selected_choice.Result += 1
-        selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:polls/results', args=(question.id,)))'''
+    answer = str(question.answers_set.get(pk=request.POST['answer']))
+    generate_private_key()
+    generate_public_key()
+    encryption(answer)
+    decrypted_answer = decryption()
+    answers_query = Answers.objects.filter(Election_Id=pk)
+    for dbanswer in answers_query:
+        if dbanswer.Answer == decrypted_answer:
+            dbanswer.Result =+ 1
+            dbanswer.save()
+        else:
+            dbanswer.Result = dbanswer.Result        
+    return HttpResponseRedirect(reverse('votingbooth:polls/results', args=(question.id,)))
 
 
 def succes(request, pk):
